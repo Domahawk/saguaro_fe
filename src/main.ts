@@ -9,6 +9,7 @@ import LandingView from "@/views/LandingView.vue";
 import LogInView from "@/views/LogInView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import UsersView from "@/views/UsersView.vue";
+import { createPinia } from "pinia";
 
 const routes = [
     {
@@ -41,10 +42,12 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
-})
+});
+
+const pinia = createPinia();
 
 // Global Before Guards
 // If user not registered, needs to redirect to landing page
 // If user not admin, redirect to user Home Page
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(pinia).use(router).mount('#app')
