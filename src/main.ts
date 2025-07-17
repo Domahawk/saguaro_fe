@@ -13,6 +13,7 @@ import { createPinia } from "pinia";
 import {useUserStore} from "@/stores/userStore.ts";
 import {useErrorsStore} from "@/stores/errorsStore.ts";
 import apiClient from "@/api/apiClient.ts";
+import EditView from "@/views/EditView.vue";
 
 const routes = [
     {
@@ -39,6 +40,11 @@ const routes = [
         path: '/users',
         name: 'users',
         component: UsersView
+    },
+    {
+        path: '/users/edit/:id',
+        name: 'userEdit',
+        component: EditView
     },
 ]
 

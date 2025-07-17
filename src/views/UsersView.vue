@@ -20,11 +20,6 @@ const fetchUsers = async () => {
   users.value = data.data;
 }
 
-const editUser = (id: number) => {
-//   redirect to user edit
-  console.log(id);
-}
-
 const deleteUser = (id: number) => {
   // delete user request
   console.log(id);
@@ -45,6 +40,9 @@ onMounted(() => {fetchUsers()});
         <TableHead>
           Email
         </TableHead>
+        <TableHead>
+          Email
+        </TableHead>
       </TableRow>
     </TableHeader>
     <TableBody>
@@ -56,7 +54,12 @@ onMounted(() => {fetchUsers()});
           {{ user.email }}
         </TableCell>
         <TableCell>
-          <Button @click="editUser(user.id)">Edit</Button>
+          {{ user.admin }}
+        </TableCell>
+        <TableCell>
+          <RouterLink :to="{ name: 'userEdit', params: { id: user.id } }">
+            <Button>Edit</Button>
+          </RouterLink>
         </TableCell>
         <TableCell>
           <Button @click="deleteUser(user.id)">Delete</Button>
