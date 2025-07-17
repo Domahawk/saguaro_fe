@@ -11,6 +11,7 @@ import {
 import {Button} from "@/components/ui/button";
 import {onMounted, ref} from "vue";
 import apiClient from "@/api/apiClient.ts";
+import type {User} from "@/types/user.ts";
 
 const users = ref();
 
@@ -20,9 +21,13 @@ const fetchUsers = async () => {
   users.value = data.data;
 }
 
-const deleteUser = (id: number) => {
-  // delete user request
-  console.log(id);
+const deleteUser = async (id: number) => {
+  try {
+    let response = await apiClient.delete(`/users/${id}`);
+    users.value = users.value.filter((user: User) => user.id != id);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 onMounted(() => {fetchUsers()});
