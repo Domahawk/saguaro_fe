@@ -11,11 +11,14 @@ import { Input } from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {ref} from "vue";
 import apiClient from "@/api/apiClient.ts";
+import { useRouter } from "vue-router";
 
 const email = ref();
 const username = ref();
 const password = ref();
 const passwordConfirm = ref();
+
+const router = useRouter();
 
 const register = async () => {
 //   send request to backend
@@ -27,9 +30,9 @@ const register = async () => {
         'password': password.value,
         'passwordConfirmation': passwordConfirm.value
       }
-  )
+  );
 
-  console.log(response.data);
+  router.push({ name: "login" });
 }
 
 </script>

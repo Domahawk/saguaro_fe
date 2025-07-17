@@ -10,13 +10,24 @@ import {
 import { Input } from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {ref} from "vue";
+import apiClient from "@/api/apiClient.ts";
+import {useRouter} from "vue-router";
+import { useUserStore } from "@/stores/userStore.ts";
 
 const email = ref();
 const password = ref();
+const router = useRouter();
+const userStore = useUserStore();
 
-const login = () => {
-// send request to backend
-  console.log(email.value, password.value);
+const login = async () => {
+  let response = await apiClient.post("/login", {
+    email: email.value,
+    password: password.value,
+  });
+
+  userStore.token = response.data.token;
+
+  router.push({ name: "home" });
 }
 
 </script>
