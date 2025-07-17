@@ -11,6 +11,8 @@ import RegisterView from "@/views/RegisterView.vue";
 import UsersView from "@/views/UsersView.vue";
 import { createPinia } from "pinia";
 import {useUserStore} from "@/stores/userStore.ts";
+import {useErrorsStore} from "@/stores/errorsStore.ts";
+import apiClient from "@/api/apiClient.ts";
 
 const routes = [
     {
@@ -47,16 +49,34 @@ const router = createRouter({
 
 const pinia = createPinia();
 
-// Global Before Guards
-// If user not registered, needs to redirect to landing page
-// If user not admin, redirect to user Home Page
-
-router.beforeEach(async (to, from) => {
+router.beforeEach(async (to) => {
     let userStore = useUserStore()
-    userStore.token = localStorage.getItem('token');
+    let errorsStore = useErrorsStore()
 
-    if (!userStore.isAuthenticated() && to.name !== 'login' && to.name !== 'landing') {
+    userStore.token = localStorage.getItem('token');
+    errorsStore.clearErrors();
+
+    if (!userStore.isAuthenticated()
+        && to.name !== 'login'
+        && to.name !== 'landing'
+        && to.name !== 'register'
+    ) {
         return { name: 'landing' }
+    }
+
+    if (!userStore.user && userStore.isAuthenticated()) {
+        try {
+            let response = await apiClient.get('/me');
+
+            userStore.user = response.data.user;
+        } catch (err: any) {
+            errorsStore.setErrors(err.response.data.errors);
+        }
+
+    }
+
+    if (!userStore.user?.admin && to.name === 'users') {
+        return { name: 'home' }
     }
 })
 

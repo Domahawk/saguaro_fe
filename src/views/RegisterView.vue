@@ -12,27 +12,33 @@ import {Button} from "@/components/ui/button";
 import {ref} from "vue";
 import apiClient from "@/api/apiClient.ts";
 import { useRouter } from "vue-router";
+import {useErrorsStore} from "@/stores/errorsStore.ts";
 
 const email = ref();
 const username = ref();
 const password = ref();
 const passwordConfirm = ref();
+const errors = ref();
 
 const router = useRouter();
+const errorsStore = useErrorsStore();
 
 const register = async () => {
-//   send request to backend
-  let response = await apiClient.post(
-      "/register",
-      {
-        'email': email.value,
-        'username': username.value,
-        'password': password.value,
-        'passwordConfirmation': passwordConfirm.value
-      }
-  );
+  try {
+    let response = await apiClient.post(
+        "/register",
+        {
+          'email': email.value,
+          'username': username.value,
+          'password': password.value,
+          'passwordConfirmation': passwordConfirm.value
+        }
+    );
 
-  router.push({ name: "login" });
+    router.push({ name: "login" });
+  } catch (err: any) {
+    errorsStore.setErrors(err.response.data.errors);
+  }
 }
 
 </script>

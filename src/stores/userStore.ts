@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import {type Ref, ref} from "vue";
+import type { User } from "@/types/user.ts";
 
 export const useUserStore = defineStore("user", () => {
     const token = ref();
+    const user: Ref<User | undefined> = ref();
 
     const login = (loginToken: string) => {
         localStorage.setItem("token", loginToken);
@@ -18,6 +20,7 @@ export const useUserStore = defineStore("user", () => {
 
     return {
         token,
+        user,
         isAuthenticated,
         login,
         logout,

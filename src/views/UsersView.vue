@@ -11,39 +11,11 @@ import {
 import {Button} from "@/components/ui/button";
 import {onMounted, ref} from "vue";
 import apiClient from "@/api/apiClient.ts";
-//
-// const users = [
-//   {
-//     id: 1,
-//     name: 'User1',
-//     email: 'user1@test.com'
-//   },
-//   {
-//     id: 2,
-//     name: 'User2',
-//     email: 'user2@test.com'
-//   },
-//   {
-//     id: 3,
-//     name: 'User3',
-//     email: 'user3@test.com'
-//   },
-//   {
-//     id: 4,
-//     name: 'User4',
-//     email: 'user4@test.com'
-//   },
-//   {
-//     id: 5,
-//     name: 'User5',
-//     email: 'user5@test.com'
-//   },
-// ];
 
 const users = ref();
 
 const fetchUsers = async () => {
-  let data = await apiClient.get("/user");
+  let data = await apiClient.get("/users");
 
   users.value = data.data;
 }
@@ -78,7 +50,7 @@ onMounted(() => {fetchUsers()});
     <TableBody>
       <TableRow v-for="user in users" :key="user.id">
         <TableCell>
-          {{ user.name }}
+          {{ user.username }}
         </TableCell>
         <TableCell>
           {{ user.email }}
