@@ -1,0 +1,50 @@
+import { createApp } from 'vue'
+import './style.css'
+import App from './App.vue'
+
+import { createWebHistory, createRouter } from 'vue-router'
+
+import HomeView from '@/views/HomeView.vue'
+import LandingView from "@/views/LandingView.vue";
+import LogInView from "@/views/LogInView.vue";
+import RegisterView from "@/views/RegisterView.vue";
+import UsersView from "@/views/UsersView.vue";
+
+const routes = [
+    {
+        path: '/',
+        name: 'landing',
+        component: LandingView
+    },
+    {
+        path: '/home',
+        name: 'home',
+        component: HomeView
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: LogInView
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: RegisterView
+    },
+    {
+        path: '/users',
+        name: 'users',
+        component: UsersView
+    },
+]
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
+})
+
+// Global Before Guards
+// If user not registered, needs to redirect to landing page
+// If user not admin, redirect to user Home Page
+
+createApp(App).use(router).mount('#app')
