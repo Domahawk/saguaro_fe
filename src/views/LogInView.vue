@@ -8,10 +8,10 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Input } from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import {ref} from "vue";
+import { Button } from "@/components/ui/button";
+import { ref } from "vue";
 import apiClient from "@/api/apiClient.ts";
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/userStore.ts";
 
 const email = ref();
@@ -25,7 +25,7 @@ const login = async () => {
     password: password.value,
   });
 
-  userStore.token = response.data.token;
+  userStore.login(response.data.token);
 
   router.push({ name: "home" });
 }

@@ -10,6 +10,7 @@ import LogInView from "@/views/LogInView.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import UsersView from "@/views/UsersView.vue";
 import { createPinia } from "pinia";
+import {useUserStore} from "@/stores/userStore.ts";
 
 const routes = [
     {
@@ -49,5 +50,14 @@ const pinia = createPinia();
 // Global Before Guards
 // If user not registered, needs to redirect to landing page
 // If user not admin, redirect to user Home Page
+
+router.beforeEach(async (to, from) => {
+    let userStore = useUserStore()
+    userStore.token = localStorage.getItem('token');
+
+    if (!userStore.isAuthenticated() && to.name !== 'login' && to.name !== 'landing') {
+        return { name: 'landing' }
+    }
+})
 
 createApp(App).use(pinia).use(router).mount('#app')
