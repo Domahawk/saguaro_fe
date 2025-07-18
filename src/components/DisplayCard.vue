@@ -12,7 +12,7 @@ interface Props {
   cardTitle: string,
   buttonName?: string,
   buttonVisible?: boolean,
-};
+}
 
 withDefaults(defineProps<Props>(), {
   cardTitle: '',
@@ -23,7 +23,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="flex items-center flex-col min-w-full min-h-full m-[10px]">
+  <div class="flex items-center w-full flex-col mt-[10px]">
     <Card class="w-[400px] md:w-1/2 lg:w-1/2 xl:w-1/3">
       <CardHeader>
         <CardTitle>{{ cardTitle }}</CardTitle>
