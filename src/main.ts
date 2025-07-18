@@ -14,6 +14,8 @@ import {useUserStore} from "@/stores/userStore.ts";
 import {useErrorsStore} from "@/stores/errorsStore.ts";
 import apiClient from "@/api/apiClient.ts";
 import EditView from "@/views/EditView.vue";
+import AddView from "@/views/AddView.vue";
+import UserView from "@/views/UserView.vue";
 
 const routes = [
     {
@@ -45,6 +47,16 @@ const routes = [
         path: '/users/edit/:id',
         name: 'userEdit',
         component: EditView
+    },
+    {
+        path: '/users/add',
+        name: 'userAdd',
+        component: AddView
+    },
+    {
+        path: '/users/view/:id',
+        name: 'userView',
+        component: UserView
     },
 ]
 

@@ -2,6 +2,7 @@
 import { useUserStore } from "@/stores/userStore.ts";
 import type { User } from "@/types/user.ts";
 import { onMounted, ref, type Ref } from "vue";
+import UserDetails from "@/components/UserDetails.vue";
 
 const userStore = useUserStore();
 
@@ -14,11 +15,8 @@ onMounted(() => {
 </script>
 
 <template>
-<h1>Hello, {{ user?.username }}</h1>
-  <h2>Your information</h2>
-  <p>Username: {{ user?.username }}</p>
-  <p>Email: {{ user?.email }}</p>
-  <p>Admin privileges: {{ user?.admin }}</p>
+  <h1>Hello, {{ user?.username }}</h1>
+  <UserDetails :user="user" />
 </template>
 
 <style scoped>

@@ -20,13 +20,18 @@ const logout = async () => {
 <template>
   <nav class="flex w-full min-h-full justify-between">
     <div>
-      <div v-if="userStore.isAuthenticated()">
+      <div v-if="userStore.isAuthenticated()" class="flex">
         <RouterLink :to="{ name: 'home'}">
           <Button>Home</Button>
         </RouterLink>
-        <RouterLink v-if="userStore.user?.admin" :to="{ name: 'users'}">
-          <Button>Users</Button>
-        </RouterLink>
+        <div v-if="userStore.user?.admin">
+          <RouterLink :to="{ name: 'users'}">
+            <Button>Users</Button>
+          </RouterLink>
+          <RouterLink :to="{ name: 'userAdd'}">
+            <Button>Add User</Button>
+          </RouterLink>
+        </div>
       </div>
     </div>
     <div v-if="!userStore.isAuthenticated()">

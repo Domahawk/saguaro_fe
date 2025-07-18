@@ -46,17 +46,21 @@ onMounted(() => {fetchUsers()});
           Email
         </TableHead>
         <TableHead>
-          Email
+          Admin
         </TableHead>
       </TableRow>
     </TableHeader>
     <TableBody>
       <TableRow v-for="user in users" :key="user.id">
         <TableCell>
-          {{ user.username }}
+          <RouterLink :to="{name: 'userView', params: {id: user.id}}">
+            {{ user.username }}
+          </RouterLink>
         </TableCell>
         <TableCell>
-          {{ user.email }}
+          <RouterLink :to="{name: 'userView', params: {id: user.id}}">
+            {{ user.email }}
+          </RouterLink>
         </TableCell>
         <TableCell>
           {{ user.admin }}
