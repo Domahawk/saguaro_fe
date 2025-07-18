@@ -57,9 +57,11 @@ onMounted(() => {fetchUsers()});
             {{ user.username }}
           </RouterLink>
         </TableCell>
-        <TableCell>
+        <TableCell class="max-w-[100px]">
           <RouterLink :to="{name: 'userView', params: {id: user.id}}">
-            {{ user.email }}
+            <p class="truncate">
+              {{ user.email }}
+            </p>
           </RouterLink>
         </TableCell>
         <TableCell>
