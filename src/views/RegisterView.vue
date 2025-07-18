@@ -5,7 +5,7 @@ import {ref} from "vue";
 import apiClient from "@/api/apiClient.ts";
 import { useRouter } from "vue-router";
 import {useErrorsStore} from "@/stores/errorsStore.ts";
-import FormCard from "@/components/FormCard.vue";
+import DisplayCard from "@/components/DisplayCard.vue";
 
 const email = ref();
 const username = ref();
@@ -37,10 +37,10 @@ const register = async () => {
 </script>
 
 <template>
-  <FormCard button-name="Register" card-title="Register" @button-click="register">
+  <DisplayCard button-name="Register" card-title="Register" @button-click="register">
     <Input v-model="email" type="email" placeholder="Email" required />
     <Input v-model="username" type="text" placeholder="Username" required />
     <Input v-model="password" type="Password" placeholder="Password" required />
     <Input v-model="passwordConfirm" type="Password" placeholder="Confirm Password" required />
-  </FormCard>
+  </DisplayCard>
 </template>

@@ -22,21 +22,21 @@ const logout = async () => {
     <div>
       <div v-if="userStore.isAuthenticated()" class="flex">
         <RouterLink :to="{ name: 'home'}">
-          <Button>Home</Button>
+          <Button class="mr-[5px]">Home</Button>
         </RouterLink>
         <div v-if="userStore.user?.admin">
           <RouterLink :to="{ name: 'users'}">
-            <Button>Users</Button>
+            <Button class="mr-[5px]">Users</Button>
           </RouterLink>
           <RouterLink :to="{ name: 'userAdd'}">
-            <Button>Add User</Button>
+            <Button class="mr-[5px]">Add User</Button>
           </RouterLink>
         </div>
       </div>
     </div>
     <div v-if="!userStore.isAuthenticated()">
       <RouterLink :to="{ name: 'login'}">
-        <Button>Log In</Button>
+        <Button class="mr-[5px]">Log In</Button>
       </RouterLink>
       <RouterLink :to="{ name: 'register'}">
         <Button>Register</Button>

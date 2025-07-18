@@ -5,7 +5,7 @@ import apiClient from "@/api/apiClient.ts";
 import { useRouter } from "vue-router";
 import { useUserStore } from "@/stores/userStore.ts";
 import { useErrorsStore } from "@/stores/errorsStore.ts";
-import FormCard from "@/components/FormCard.vue";
+import DisplayCard from "@/components/DisplayCard.vue";
 
 const email = ref();
 const password = ref();
@@ -32,8 +32,8 @@ const login = async () => {
 </script>
 
 <template>
-  <FormCard card-title="Login" button-name="Login" @button-click="login">
+  <DisplayCard card-title="Login" button-name="Login" @button-click="login">
     <Input v-model="email" type="email" placeholder="Email" required />
     <Input v-model="password" type="password" placeholder="Password" required />
-  </FormCard>
+  </DisplayCard>
 </template>

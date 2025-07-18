@@ -15,8 +15,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Hello, {{ user?.username }}</h1>
-  <UserDetails :user="user" />
+  <div class="flex flex-col items-center w-full h-full">
+    <h1>Hello, {{ user?.username }}</h1>
+    <UserDetails :user="user" />
+  </div>
 </template>
 
 <style scoped>

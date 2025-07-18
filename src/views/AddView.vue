@@ -2,7 +2,7 @@
 import { type Ref, ref } from "vue";
 import apiClient from "@/api/apiClient.ts";
 import { useErrorsStore } from "@/stores/errorsStore.ts";
-import FormCard from "@/components/FormCard.vue";
+import DisplayCard from "@/components/DisplayCard.vue";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -35,13 +35,13 @@ const adminChange = () => {
 </script>
 
 <template>
-  <FormCard card-title="Edit user" button-name="Submit" @button-click="addUser">
+  <DisplayCard card-title="Add user" button-name="Submit" @button-click="addUser">
     <Input v-model="email" type="email" placeholder="Email" required />
     <Input v-model="username" type="text" placeholder="Username" required />
     <Input v-model="password" type="Password" placeholder="Password" required />
     <div class="flex justify-start items-center">
-      <Button class="text-white m-[5px]" @click="adminChange">Is Admin</Button>
+      <Button class="text-white" @click="adminChange">Is Admin</Button>
       <p class="m-[5px]">{{ admin }}</p>
     </div>
-  </FormCard>
+  </DisplayCard>
 </template>

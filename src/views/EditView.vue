@@ -3,7 +3,7 @@ import {onMounted, type Ref, ref} from "vue";
 import apiClient from "@/api/apiClient.ts";
 import { useRoute } from "vue-router";
 import {useErrorsStore} from "@/stores/errorsStore.ts";
-import FormCard from "@/components/FormCard.vue";
+import DisplayCard from "@/components/DisplayCard.vue";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 
@@ -54,7 +54,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <FormCard card-title="Edit user" button-name="Submit" @button-click="update">
+  <DisplayCard card-title="Edit user" button-name="Submit" @button-click="update">
     <Input v-model="email" type="email" placeholder="Email" required />
     <Input v-model="username" type="text" placeholder="Username" required />
     <Input v-model="password" type="Password" placeholder="Password" required />
@@ -62,5 +62,5 @@ onMounted(async () => {
       <Button class="text-white m-[5px]" @click="adminChange">Is Admin</Button>
       <p class="m-[5px]">{{ admin }}</p>
     </div>
-  </FormCard>
+  </DisplayCard>
 </template>

@@ -6,7 +6,9 @@ const errorsStore = useErrorsStore();
 </script>
 
 <template>
-  <div v-for="error in errorsStore.errors">
+  <div class="flex flex-row min-w-full min-h-full justify-center text-red-500"
+      v-for="error in errorsStore.errors"
+  >
     <p>{{ error[0] }}</p>
   </div>
 </template>
